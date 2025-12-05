@@ -35,7 +35,7 @@ export class ContentProcessor {
    * Extract text content from uploaded file buffer
    * 👻 Now supports PDF, Word, HTML, and text files
    */
-  static async extractText(file: Express.Multer.File): Promise<string> {
+  static async extractText(file: any): Promise<string> {
     try {
       // Handle text files
       if (file.mimetype === 'text/plain' || file.mimetype === 'text/markdown') {
@@ -379,7 +379,7 @@ export class ContentProcessor {
    * Main processing function
    */
   static async processContent(
-    file: Express.Multer.File, 
+    file: any, 
     metadata: Partial<ContentMetadata> = {}
   ): Promise<ProcessedContent> {
     try {
