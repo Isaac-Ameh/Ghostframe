@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: ghostframe-backend
+    env: node
+    buildCommand: cd backend && npm install && npm run build
+    startCommand: cd backend && npm start
+    plan: free
+    region: oregon
+    branch: main
+    rootDir: .
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CORS_ORIGIN
+        value: https://ghostframe.vercel.app
+    healthCheckPath: /api/health

@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import spooky fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap');
+
+/* Global spooky theme styles with Phase 2.1 colors */
+@layer base {
+  html {
+    @apply bg-grave-black text-ghost-white font-sans;
+  }
+  
+  body {
+    @apply min-h-screen bg-gradient-to-br from-grave-black via-ghost-gray to-specter-purple;
+    font-family: 'Inter', 'Creepster', cursive;
+  }
+  
+  /* Enhanced typography with Creepster font for headings */
+  h1, h2, h3 {
+    font-family: 'Creepster', cursive;
+    @apply text-ghost-white;
+  }
+}
+
+/* Custom component styles with Phase 2.1 colors */
+@layer components {
+  .ghost-button {
+    @apply bg-specter-purple hover:bg-pumpkin-orange text-ghost-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-specter-purple/50;
+  }
+  
+  .ghost-button-primary {
+    @apply bg-pumpkin-orange hover:bg-specter-purple text-grave-black hover:text-ghost-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+    box-shadow: 0 0 20px rgba(127, 255, 0, 0.3);
+  }
+  
+  .ghost-button-primary:hover {
+    box-shadow: 0 0 30px rgba(127, 255, 0, 0.5);
+    transform: translateY(-2px) scale(1.05);
+  }
+  
+  .ghost-card {
+    @apply bg-ghost-gray/80 backdrop-blur-sm border border-specter-purple/30 rounded-xl p-6 shadow-xl hover:shadow-specter-purple/20 transition-all duration-300;
+  }
+  
+  .haunted-input {
+    @apply bg-ghost-gray border border-specter-purple/50 text-ghost-white placeholder-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:border-pumpkin-orange focus:ring-2 focus:ring-pumpkin-orange/20;
+  }
+  
+  /* Phase 2.1 specific components */
+  .creepster-heading {
+    font-family: 'Creepster', cursive;
+    @apply text-ghost-white text-glow;
+  }
+  
+  .spooky-nav-link {
+    @apply flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 text-ghost-white hover:bg-specter-purple/50 hover:text-glow;
+  }
+  
+  .spooky-nav-link.active {
+    @apply bg-specter-purple text-ghost-white border-glow;
+  }
+}
+
+/* Enhanced spooky animations and utilities */
+@layer utilities {
+  /* Floating ghost animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .floating-ghost {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* Subtle fog effect */
+  @keyframes fog-drift {
+    0% { transform: translateX(0) translateY(0); opacity: 0.3; }
+    50% { transform: translateX(20px) translateY(-10px); opacity: 0.5; }
+    100% { transform: translateX(0) translateY(0); opacity: 0.3; }
+  }
+  
+  .fog-effect {
+    animation: fog-drift 20s ease-in-out infinite;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+  
+  .border-glow {
+    box-shadow: 0 0 10px theme('colors.specter-purple'), 0 0 20px theme('colors.specter-purple');
+  }
+  
+  .pumpkin-glow {
+    box-shadow: 0 0 15px theme('colors.pumpkin-orange'), 0 0 30px theme('colors.pumpkin-orange');
+  }
+  
+  .ghost-shadow {
+    box-shadow: 0 10px 25px theme('colors.grave-black/50'), 0 20px 40px theme('colors.grave-black/30');
+  }
+  
+  /* Radial gradient utility for background effects */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+  
+  /* Haunted landing page specific effects */
+  .haunted-bg {
+    background: linear-gradient(135deg, 
+      theme('colors.grave-black') 0%, 
+      theme('colors.ghost-gray/50') 50%, 
+      theme('colors.specter-purple/20') 100%
+    );
+  }
+  
+  /* Phase 2.1 responsive utilities */
+  .responsive-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .responsive-text {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+  
+  /* Enhanced responsive design utilities */
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+  }
+  
+  .responsive-flex {
+    @apply flex flex-col sm:flex-row items-start sm:items-center gap-4;
+  }
+  
+  .responsive-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Mobile-first navigation improvements */
+  .mobile-nav-item {
+    @apply block w-full text-left px-4 py-3 text-ghost-white hover:bg-specter-purple/20 transition-colors;
+  }
+  
+  /* Responsive dashboard layout */
+  .dashboard-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6;
+  }
+  
+  .dashboard-card {
+    @apply bg-gray-800 rounded-xl p-4 lg:p-6 hover:bg-gray-700 transition-colors;
+  }
+  
+  /* Responsive typography scaling */
+  .heading-responsive {
+    @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl;
+  }
+  
+  .subheading-responsive {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+  
+  /* Touch-friendly interactive elements */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+  
+  /* Responsive spacing */
+  .section-spacing {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
+  
+  .element-spacing {
+    @apply mb-4 sm:mb-6 lg:mb-8;
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "ghostframe",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend && npm run build:cli",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "build:cli": "cd cli && npm pack",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:frontend": "cd frontend && npm run start",
+    "start:backend": "cd backend && npm run start",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:frontend": "cd frontend && npm run test",
+    "test:backend": "cd backend && npm run test",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install && cd ../cli && npm install",
+    "cli:install": "cd cli && npm install -g .",
+    "cli:link": "cd cli && npm link"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

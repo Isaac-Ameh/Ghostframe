@@ -1,0 +1,197 @@
+{
+  "id": "quiz-ghost",
+  "name": "Quiz Ghost",
+  "version": "2.0.0",
+  "description": "AI-powered educational quiz generation module that transforms content into interactive learning experiences",
+  "author": "GhostFrame Team",
+  "category": "education",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "Educational content to generate quiz from",
+        "minLength": 50,
+        "maxLength": 50000
+      },
+      "questionCount": {
+        "type": "number",
+        "description": "Number of questions to generate",
+        "minimum": 1,
+        "maximum": 20,
+        "default": 5
+      },
+      "difficulty": {
+        "type": "string",
+        "enum": ["easy", "medium", "hard"],
+        "description": "Difficulty level of questions",
+        "default": "medium"
+      },
+      "questionTypes": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["multiple_choice", "true_false", "short_answer"]
+        },
+        "description": "Types of questions to include",
+        "default": ["multiple_choice"]
+      },
+      "includeExplanations": {
+        "type": "boolean",
+        "description": "Include explanations for answers",
+        "default": true
+      },
+      "language": {
+        "type": "string",
+        "description": "Language for quiz generation",
+        "default": "en"
+      },
+      "subject": {
+        "type": "string",
+        "description": "Subject area for the quiz"
+      },
+      "focusAreas": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Specific topics to focus on"
+      }
+    },
+    "required": ["content"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "quizId": {
+        "type": "string",
+        "description": "Unique identifier for the generated quiz"
+      },
+      "title": {
+        "type": "string",
+        "description": "Quiz title"
+      },
+      "description": {
+        "type": "string",
+        "description": "Quiz description"
+      },
+      "questions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Question identifier"
+            },
+            "type": {
+              "type": "string",
+              "enum": ["multiple_choice", "true_false", "short_answer"],
+              "description": "Question type"
+            },
+            "question": {
+              "type": "string",
+              "description": "The question text"
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Answer options (for multiple choice)"
+            },
+            "correctAnswer": {
+              "type": "string",
+              "description": "The correct answer"
+            },
+            "explanation": {
+              "type": "string",
+              "description": "Explanation of the correct answer"
+            },
+            "difficulty": {
+              "type": "string",
+              "enum": ["easy", "medium", "hard"],
+              "description": "Question difficulty"
+            },
+            "topic": {
+              "type": "string",
+              "description": "Question topic"
+            },
+            "points": {
+              "type": "number",
+              "description": "Points awarded for correct answer"
+            }
+          },
+          "required": ["id", "type", "question", "correctAnswer", "difficulty", "topic", "points"]
+        }
+      },
+      "metadata": {
+        "type": "object",
+        "properties": {
+          "totalQuestions": {
+            "type": "number",
+            "description": "Total number of questions"
+          },
+          "totalPoints": {
+            "type": "number",
+            "description": "Total points possible"
+          },
+          "estimatedTime": {
+            "type": "number",
+            "description": "Estimated completion time in minutes"
+          },
+          "difficulty": {
+            "type": "string",
+            "description": "Overall quiz difficulty"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Topics covered in the quiz"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Quiz creation timestamp"
+          }
+        },
+        "required": ["totalQuestions", "totalPoints", "estimatedTime", "difficulty", "topics", "createdAt"]
+      }
+    },
+    "required": ["quizId", "title", "description", "questions", "metadata"]
+  },
+  "aiModels": ["gpt-3.5-turbo", "gpt-4"],
+  "features": ["ai_text", "caching", "analytics"],
+  "permissions": [],
+  "dependencies": [],
+  "resources": {
+    "cpu": "500m",
+    "memory": "512Mi",
+    "storage": "1Gi"
+  },
+  "scaling": {
+    "minInstances": 1,
+    "maxInstances": 10,
+    "targetCPU": 70,
+    "targetMemory": 80
+  },
+  "monitoring": {
+    "healthCheck": {
+      "path": "/health",
+      "interval": 30000,
+      "timeout": 5000,
+      "retries": 3
+    },
+    "metrics": ["execution_time", "question_count", "quality_score"],
+    "alerts": [
+      {
+        "name": "High Error Rate",
+        "condition": "error_rate > 5%",
+        "threshold": 5,
+        "actions": ["email", "slack"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@ghostframe/quiz-ghost",
+  "version": "1.0.0",
+  "description": "AI-powered quiz generation from any content",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "ghostframe",
+    "quiz",
+    "education",
+    "ai",
+    "learning"
+  ],
+  "author": "GhostFrame Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0"
+  }
+}
