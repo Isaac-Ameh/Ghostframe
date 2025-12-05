@@ -92,14 +92,9 @@ interface EnvConfig {
  * Validate required environment variables
  */
 function validateEnv(): void {
+  // Only validate essential variables, database is optional
   const required = [
     'PORT',
-    'DB_HOST',
-    'DB_PORT',
-    'DB_NAME',
-    'DB_USER',
-    'DB_PASSWORD',
-    'JWT_SECRET',
   ];
 
   const missing = required.filter(key => !process.env[key]);
@@ -114,16 +109,6 @@ function validateEnv(): void {
   // Validate JWT secret strength
   if (process.env.JWT_SECRET && process.env.JWT_SECRET.length < 32) {
     console.warn('⚠️  JWT_SECRET should be at least 32 characters long');
-  }
-
-  // Validate database connection
-  if (process.env.DB_PASSWORD === 'your_secure_password_here') {
-    console.warn('⚠️  Please change the default database password');
-  }
-
-  // Validate admin credentials
-  if (process.env.ADMIN_PASSWORD === 'change_this_secure_password') {
-    console.warn('⚠️  Please change the default admin password');
   }
 }
 
@@ -219,7 +204,6 @@ if (process.env.NODE_ENV !== 'test') {
   console.log('✅ Environment configuration loaded:');
   console.log(`   - Environment: ${config.nodeEnv}`);
   console.log(`   - Port: ${config.port}`);
-  console.log(`   - Database: ${config.db.host}:${config.db.port}/${config.db.name}`);
   console.log(`   - Groq: ${config.groq.enabled ? 'Enabled' : 'Disabled'}`);
   console.log(`   - OpenAI: ${config.openai.enabled ? 'Enabled' : 'Disabled'}`);
   console.log(`   - Anthropic: ${config.anthropic.enabled ? 'Enabled' : 'Disabled'}`);
