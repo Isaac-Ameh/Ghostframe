@@ -13,6 +13,14 @@ services:
         value: production
       - key: PORT
         value: 10000
-      - key: CORS_ORIGIN
-        value: https://ghostframe.vercel.app
-    healthCheckPath: /api/health
+      - key: FRONTEND_URL
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MAX_FILE_SIZE
+        value: 10485760
+      - key: LOG_LEVEL
+        value: info
+    healthCheckPath: /health
