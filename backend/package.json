@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "npx tsc",
+    "build": "tsc",
     "start": "node dist/server.js",
     "start:dev": "tsx src/server.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint src --ext .ts",
-    "type-check": "npx tsc --noEmit",
+    "type-check": "tsc --noEmit",
     "db:init": "node -r tsx/cjs src/database/init.ts"
   },
   "dependencies": {

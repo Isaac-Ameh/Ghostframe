@@ -57,13 +57,13 @@ export async function authenticatedFetch(
 ): Promise<Response> {
   const token = getToken();
   
-  const headers = {
-    ...options.headers,
+  const headers: HeadersInit = {
     'Content-Type': 'application/json',
+    ...(options.headers as Record<string, string>),
   };
   
   if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+    (headers as Record<string, string>)['Authorization'] = `Bearer ${token}`;
   }
   
   const response = await fetch(url, {
