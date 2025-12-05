@@ -558,21 +558,4 @@ export default function FrameworkDocsPage() {
       </div>
     </div>
   );
-}over:text-spectral-green/80 text-sm">
-                    Framework Home
-                  </Link>
-                  <Link href="/framework/create" className="text-spectral-green hover:text-spectral-green/80 text-sm">
-                    Create Module
-                  </Link>
-                  <a href="https://github.com/your-org/ghostframe" className="text-spectral-green hover:text-spectral-green/80 text-sm">
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </div>
-  );
 }
