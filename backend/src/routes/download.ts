@@ -209,9 +209,9 @@ router.get('/sdk', async (req: Request, res: Response) => {
     const sdkPath = path.join(projectRoot, 'sdk');
 
     if (fs.existsSync(sdkPath)) {
-      archive.directory(sdkPath, 'ghostframe-sdk', (entry) => {
-        return !entry.name.includes('node_modules');
-      });
+      archive.directory(sdkPath, 'ghostframe-sdk', {
+        filter: (entry: string) => !entry.includes('node_modules')
+      } as any);
     }
 
     await archive.finalize();
@@ -247,9 +247,9 @@ router.get('/cli', async (req: Request, res: Response) => {
     const cliPath = path.join(projectRoot, 'cli');
 
     if (fs.existsSync(cliPath)) {
-      archive.directory(cliPath, 'ghostframe-cli', (entry) => {
-        return !entry.name.includes('node_modules');
-      });
+      archive.directory(cliPath, 'ghostframe-cli', {
+        filter: (entry: string) => !entry.includes('node_modules')
+      } as any);
     }
 
     await archive.finalize();

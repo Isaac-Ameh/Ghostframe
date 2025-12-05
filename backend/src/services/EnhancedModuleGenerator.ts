@@ -472,13 +472,27 @@ Generate a complete Prisma schema with proper relationships.`;
       description: request.description,
       author: request.author,
       category: request.category as any,
-      status: 'development',
+      status: 'draft',
       config: {
         inputSchema: {},
         outputSchema: {},
-        aiModels: request.aiModels,
-        features: request.features
+        supportedContentTypes: ['text/plain', 'application/pdf'],
+        processingModes: ['realtime' as any],
+        uiComponents: [],
+        endpoints: []
       },
+      specs: {
+        specFiles: [],
+        requirements: [],
+        testCases: []
+      },
+      hooks: {},
+      steering: {
+        behaviorRules: [],
+        contextGuidelines: [],
+        qualityStandards: []
+      },
+      kiroCompatibility: '1.0.0',
       createdAt: new Date(),
       updatedAt: new Date()
     };
@@ -531,12 +545,11 @@ Generate a complete Prisma schema with proper relationships.`;
    * Generate steering
    */
   private async generateSteering(request: EnhancedModuleRequest): Promise<string> {
-    return await steeringEngine.generateSteeringRules({
-      moduleId: request.id,
-      category: request.category,
-      features: request.features,
-      aiModels: request.aiModels
-    });
+    const doc = await steeringEngine.generateSteeringDocument(
+      request.id,
+      request.category
+    );
+    return doc.content;
   }
 
   /**

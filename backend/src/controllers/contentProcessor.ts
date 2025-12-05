@@ -1,4 +1,4 @@
-import * as pdfParse from 'pdf-parse';
+import pdfParse from 'pdf-parse';
 import * as mammoth from 'mammoth';
 import * as cheerio from 'cheerio';
 

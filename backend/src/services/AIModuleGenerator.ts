@@ -436,7 +436,7 @@ describe('${className}Module', () => {
   /**
    * Generate Kiro specs
    */
-  private async generateKiroSpecs(moduleInfo: any): string {
+  private async generateKiroSpecs(moduleInfo: any): Promise<string> {
     return `# ${moduleInfo.name} - Kiro Specifications
 
 ## Overview
